@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // select element
 const submitBtn = document.getElementById("submit-btn");
@@ -14,18 +14,18 @@ const vaccinatedInput = document.getElementById("input-vaccinated");
 const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
 const tableBody = document.getElementById("tbody");
-const sideBar = document.getElementById('sidebar');
-const tableHead = document.getElementById('thead');
+const sideBar = document.getElementById("sidebar");
+const tableHead = document.getElementById("thead");
 
 /******DATA*****/
-const petArr = JSON.parse(getFromStorage('petArr', '[]'));
-const breedArr = JSON.parse(getFromStorage('breedArr', '[]'));
+const petArr = JSON.parse(getFromStorage("petArr", "[]"));
+const breedArr = JSON.parse(getFromStorage("breedArr", "[]"));
 let breedArrRender = [];
 
 petArr.sort((a, b) => {
-  if(a.id > b.id) return 1;
+  if (a.id > b.id) return 1;
   else return -1;
-})
+});
 
 /******FUNCTIONS****/
 function validateId(id) {
@@ -148,6 +148,7 @@ function renderTableData(petArr) {
     tableBody.appendChild(row);
   }
 }
+renderTableData(petArr);
 
 function renderTableDataWithBMI(petArr) {
   tableHead.innerHTML = `<tr>
@@ -200,17 +201,17 @@ function renderTableDataWithBMI(petArr) {
 }
 
 // Render breed
-const renderBreed = function(breedArrRender){
-  breedInput.innerHTML = '';
-  const defaultOption = document.createElement('option');
-  defaultOption.innerHTML = 'Select Breed';
+const renderBreed = function (breedArrRender) {
+  breedInput.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.innerHTML = "Select Breed";
   breedInput.appendChild(defaultOption);
-  for(let i = 0; i < breedArrRender.length; i++){
-    const option = document.createElement('option');
-    option.innerHTML = `${breedArrRender[i].name}`
-    breedInput.appendChild(option)
+  for (let i = 0; i < breedArrRender.length; i++) {
+    const option = document.createElement("option");
+    option.innerHTML = `${breedArrRender[i].name}`;
+    breedInput.appendChild(option);
   }
-}
+};
 
 // delete item
 const deletePet = (petId) => {
@@ -220,7 +221,7 @@ const deletePet = (petId) => {
     });
 
     petArr.splice(deletePetIndex, 1);
-    saveToStorage('petArr', JSON.stringify(petArr));
+    saveToStorage("petArr", JSON.stringify(petArr));
     renderTableData(petArr);
   }
 };
@@ -231,14 +232,14 @@ function checkHealthy(pet) {
 }
 
 // onchange Type input lead to change breed
-const typeInputChange = function() {
+const typeInputChange = function () {
   let type = typeInput.value;
-  if(type === 'Dog') breedArrRender = breedArr.filter(item => item.type === 'Dog');
-  else if(type === 'Cat') breedArrRender = breedArr.filter(item => item.type === 'Cat');
+  if (type === "Dog")
+    breedArrRender = breedArr.filter((item) => item.type === "Dog");
+  else if (type === "Cat")
+    breedArrRender = breedArr.filter((item) => item.type === "Cat");
   renderBreed(breedArrRender);
-}
-
-
+};
 
 /******BUTTON******/
 submitBtn.addEventListener("click", function (e) {
@@ -271,7 +272,7 @@ submitBtn.addEventListener("click", function (e) {
   data.calculateBMI();
   if (validate(data)) {
     petArr.push(data);
-    saveToStorage('petArr', JSON.stringify(petArr));
+    saveToStorage("petArr", JSON.stringify(petArr));
     clearInput();
     renderTableData(petArr);
   }
@@ -283,7 +284,7 @@ healthyPetBtn.addEventListener("click", function (e) {
   if (healthyPetBtn.textContent === "Show Healthy Pet") {
     healthyPetBtn.textContent = "Show all Pet";
     let healthyPet = [];
-    for(const data of petArr){
+    for (const data of petArr) {
       if (checkHealthy(data)) {
         healthyPet.push(data);
       }
@@ -302,9 +303,8 @@ calculateBMIBtn.addEventListener("click", function (e) {
 });
 
 // sidebar
-sideBar.addEventListener('click', function() {
-  sideBar.classList.toggle('active');
-})
+sideBar.addEventListener("click", function () {
+  sideBar.classList.toggle("active");
+});
 
 // select type -> breed change
-

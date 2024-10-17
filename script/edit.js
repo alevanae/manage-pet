@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
 /**** DATA ****/
-const petArr = JSON.parse(getFromStorage('petArr', '[]'));
-const healthyPet = JSON.parse(getFromStorage('healthyPet', '[]'));
-const breedArr = JSON.parse(getFromStorage('breedArr', '[]'));
+const petArr = JSON.parse(getFromStorage("petArr", "[]"));
+const healthyPet = JSON.parse(getFromStorage("healthyPet", "[]"));
+const breedArr = JSON.parse(getFromStorage("breedArr", "[]"));
 let breedArrRender = [];
 
 /**** SELECT ELEMENTS ****/
-const tableBody = document.getElementById('tbody');
-const editField = document.getElementById('container-form');
+const tableBody = document.getElementById("tbody");
+const editField = document.getElementById("container-form");
 
 const submitBtn = document.getElementById("submit-btn");
 const idInput = document.getElementById("input-id");
@@ -23,7 +23,7 @@ const vaccinatedInput = document.getElementById("input-vaccinated");
 const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
 
-/**** FUNcTIONS ****/
+/**** FUNCTIONS ****/
 function renderTableData(petArr) {
   tableBody.innerHTML = "";
   for (const item of petArr) {
@@ -49,24 +49,26 @@ function renderTableData(petArr) {
       item.sterilized ? "bi-check-circle-fill" : "bi-x-circle-fill"
     }"></i></td>
     <td>${item.date}</td>
-    <td><button type="button" class="btn btn-warning" onclick="startEditPet('${item.id}')">Edit</button>
+    <td><button type="button" class="btn btn-warning" onclick="startEditPet('${
+      item.id
+    }')">Edit</button>
     </td>`;
     tableBody.appendChild(row);
   }
 }
 renderTableData(petArr);
 
-const renderBreed = function(breedArrRender){
-  breedInput.innerHTML = '';
-  const defaultOption = document.createElement('option');
-  defaultOption.innerHTML = 'Select Breed';
+const renderBreed = function (breedArrRender) {
+  breedInput.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.innerHTML = "Select Breed";
   breedInput.appendChild(defaultOption);
-  for(let i = 0; i < breedArrRender.length; i++){
-    const option = document.createElement('option');
-    option.innerHTML = `${breedArrRender[i].name}`
-    breedInput.appendChild(option)
+  for (let i = 0; i < breedArrRender.length; i++) {
+    const option = document.createElement("option");
+    option.innerHTML = `${breedArrRender[i].name}`;
+    breedInput.appendChild(option);
   }
-}
+};
 renderBreed(breedArr);
 
 function checkHealthy(pet) {
@@ -87,8 +89,8 @@ const clearInput = function () {
   sterilizedInput.checked = false;
 };
 
-function startEditPet(petId){
-  editField.classList.remove('hide');
+function startEditPet(petId) {
+  editField.classList.remove("hide");
   const editPetIndex = petArr.findIndex(function (item) {
     return item.id === petId;
   });
@@ -103,7 +105,7 @@ function startEditPet(petId){
   vaccinatedInput.checked = petArr[editPetIndex].vaccinated;
   dewormedInput.checked = petArr[editPetIndex].dewormed;
   sterilizedInput.checked = petArr[editPetIndex].sterilized;
-};
+}
 
 function validate(data) {
   if (data.name === "") {
@@ -145,10 +147,12 @@ function validate(data) {
   return true;
 }
 
-const typeInputChange = function() {
+const typeInputChange = function () {
   let type = typeInput.value;
-  if(type === 'Dog') breedArrRender = breedArr.filter(item => item.type === 'Dog');
-  else if(type === 'Cat') breedArrRender = breedArr.filter(item => item.type === 'Cat');
+  if (type === "Dog")
+    breedArrRender = breedArr.filter((item) => item.type === "Dog");
+  else if (type === "Cat")
+    breedArrRender = breedArr.filter((item) => item.type === "Cat");
   renderBreed(breedArrRender);
 };
 /**** BUTTON ACTION ****/
@@ -186,15 +190,14 @@ submitBtn.addEventListener("click", function (e) {
   });
   if (validate(data)) {
     petArr[editPetIndex] = data;
-    saveToStorage('petArr', JSON.stringify(petArr));
+    saveToStorage("petArr", JSON.stringify(petArr));
     clearInput();
     renderTableData(petArr);
     if (checkHealthy(data)) {
       healthyPet[editPetIndex] = data;
-      saveToStorage('healthyPet', JSON.stringify(healthyPet));
+      saveToStorage("healthyPet", JSON.stringify(healthyPet));
     }
   }
-  editField.classList.add('hide');
+  editField.classList.add("hide");
   clearInput();
 });
-
