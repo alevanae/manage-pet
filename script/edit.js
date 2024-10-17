@@ -23,6 +23,11 @@ const vaccinatedInput = document.getElementById("input-vaccinated");
 const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
 
+const sideBar = document.getElementById("sidebar");
+sideBar.addEventListener("click", function () {
+  sideBar.classList.toggle("active");
+});
+
 /**** FUNCTIONS ****/
 function renderTableData(petArr) {
   tableBody.innerHTML = "";
