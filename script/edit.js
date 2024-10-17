@@ -22,9 +22,9 @@ const breedInput = document.getElementById("input-breed");
 const vaccinatedInput = document.getElementById("input-vaccinated");
 const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
-
+const sideBarTitle = document.getElementById("sidebar-title");
 const sideBar = document.getElementById("sidebar");
-sideBar.addEventListener("click", function () {
+sideBarTitle.addEventListener("click", function () {
   sideBar.classList.toggle("active");
 });
 

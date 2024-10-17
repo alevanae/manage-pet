@@ -18,9 +18,9 @@ const bodyTable = document.getElementById("tbody");
   </td>
 </tr>
 */
-
+const sideBarTitle = document.getElementById("sidebar-title");
 const sideBar = document.getElementById("sidebar");
-sideBar.addEventListener("click", function () {
+sideBarTitle.addEventListener("click", function () {
   sideBar.classList.toggle("active");
 });
 /**** FUNCTIONS ****/

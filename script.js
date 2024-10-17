@@ -15,6 +15,7 @@ const dewormedInput = document.getElementById("input-dewormed");
 const sterilizedInput = document.getElementById("input-sterilized");
 const tableBody = document.getElementById("tbody");
 const sideBar = document.getElementById("sidebar");
+const sideBarTitle = document.getElementById("sidebar-title");
 const tableHead = document.getElementById("thead");
 
 /******DATA*****/
@@ -303,7 +304,7 @@ calculateBMIBtn.addEventListener("click", function (e) {
 });
 
 // sidebar
-sideBar.addEventListener("click", function () {
+sideBarTitle.addEventListener("click", function () {
   sideBar.classList.toggle("active");
 });
 

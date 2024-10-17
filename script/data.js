@@ -6,8 +6,11 @@ let newPetArr = [];
 const saveBtn = document.getElementById("export-btn");
 const fileLoad = document.getElementById("input-file");
 const loadBtn = document.getElementById("import-btn");
+
+const sideBarTitle = document.getElementById("sidebar-title");
+
 const sideBar = document.getElementById("sidebar");
-sideBar.addEventListener("click", function () {
+sideBarTitle.addEventListener("click", function () {
   sideBar.classList.toggle("active");
 });
 

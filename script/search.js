@@ -18,7 +18,8 @@ const inputSterilized = document.getElementById("input-sterilized");
 const tableBody = document.getElementById("tbody");
 
 const sideBar = document.getElementById("sidebar");
-sideBar.addEventListener("click", function () {
+const sideBarTitle = document.getElementById("sidebar-title");
+sideBarTitle.addEventListener("click", function () {
   sideBar.classList.toggle("active");
 });
 
